@@ -5,7 +5,22 @@ use ThreeS::Container;
 
 sub do_index {
     my ( $class, $c ) = @_;
-    $c->stash->{body} = "Hello Chiffon World!";
+    $c->stash->{studies} = [
+        {
+            id    =>       1,
+            guid  => 'aaaaa',
+            title => 'title',
+            memo  => 'memomemo',
+            name  => 'Nishibayashi Takuji',
+        },
+        {
+            id    =>       1,
+            guid  => 'aaaaa',
+            title => 'title',
+            memo  => 'memomemo',
+            name  => 'Nishibayashi Takuji',
+        },
+    ];
 }
 
 1;
