@@ -5,7 +5,21 @@ use Path::Class;
 my $home = container('home');
 return +{
     common => {
-        app_name => 'three_s',
+        app_name  => 'three_s',
+        title     => 'ThreeS - The web slide system',
+        copyright => '2010 Senchan all rights reserved',
+        global_navi => [
+            {
+                title => 'Top',
+                link  => '/',
+                name  => 'top'
+            },
+            {
+                title => 'SlideShow',
+                link  => '/slideshow/',
+                name  => 'slideshow'
+            },
+        ],
         view => {
             'Chiffon::View::Xslate' => +{
                 path   => $home->file('assets/template')->stringify,
