@@ -2,7 +2,7 @@ package  ThreeS::Model::Schema;
 use DBIx::Skinny::Schema;
 use DBIx::Skinny::InflateColumn::DateTime::Auto;
 use Data::UUID;
-use Digest::SHA qw/sha1_hex/;
+use Digest::SHA qw/sha256_hex/;
 
 sub set_guid {
     my $data = shift;
@@ -12,7 +12,7 @@ sub set_guid {
 sub hash_password {
     my $data = shift;
     if(defined $data->{password} && !ref($data) ){
-        $data->{password} = sha1_hex($data->{password});
+        $data->{password} = sha256_hex($data->{password});
     }
 }
 
