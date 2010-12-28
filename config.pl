@@ -29,7 +29,7 @@ return +{
     dev     => {
         datasource => +{
             master => +{
-                dsn => 'dbi:mysql:three_s;user=root',
+                dsn => 'dbi:mysql:study_dev;user=root',
             },
         },
     },
