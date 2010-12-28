@@ -1,6 +1,7 @@
 package  ThreeS::Model::Schema;
 use DBIx::Skinny::Schema;
 use DBIx::Skinny::InflateColumn::DateTime::Auto;
+use DBIx::Skinny::Mixin modules => ['SearchWithPager'];
 use Data::UUID;
 use Digest::SHA qw/sha256_hex/;
 
@@ -16,13 +17,13 @@ sub hash_password {
     }
 }
 
-install_table slide => schema {
+install_table slide_content => schema {
     pk qw/id/;
-    columns qw/id guid study_id sort_order title body status created_at updated_at/;
+    columns qw/id guid slide_id sort_order title body status created_at updated_at/;
     trigger pre_insert => &set_guid;
 };
 
-install_table study => schema {
+install_table slide => schema {
     pk qw/id/;
     columns qw/id guid user_id title memo status announce_at created_at updated_at/;
     trigger pre_insert => &set_guid;
