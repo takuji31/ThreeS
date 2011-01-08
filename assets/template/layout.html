@@ -1,3 +1,4 @@
+: cascade with macro
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
 <head>
@@ -8,23 +9,11 @@
   <script type="text/javascript" charset="utf-8" src="/js/jquery-1.4.2.min.js"></script>
 </head>
 <body>
+:dump($c.dispatch_rule)
 <div id="container">
     <div id="header">
       <h1><a href="/"><: $title || $config.title :></a></h1>
-      <div id="user-navigation">
-        <ul class="wat-cf">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Settings</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a class="logout" href="#">Logout</a></li>
-        </ul>
-      </div>
-      <div id="main-navigation">
-        <ul class="wat-cf">
-          <li class="first active" ><a href="/" title="Top">Top</a></li> 
-          <li><a href="/study/" title="Study">Study</a></li>
-        </ul>
-      </div>
+:      global_navi( $active_global_navi || $c.dispatch_rule.controller )
     </div>
     <div id="wrapper" class="wat-cf">
       <div id="main">

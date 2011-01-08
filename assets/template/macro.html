@@ -1,0 +1,104 @@
+:macro static -> $path { 'http://static.senchan.jp'~$path }
+:macro form_before -> $opt {
+<div class="group"> 
+  <div class="fieldWithErrors"> 
+    <label class="label" for="memo"><: $opt.label || $opt.name :></label> 
+:   if($error[$opt.name]){
+      <span class="error"><: $error[$opt.name] :></span> 
+:   }
+  </div> 
+:}
+
+:macro form_after -> $opt {
+:if($opt.desc){
+  <span class="description"><: $opt.desc :></span> 
+:}
+</div> 
+:}
+
+:macro form_text -> $opt {
+:form_before($opt)
+  <input type="<: $opt.type || 'text' :>" id="form_<: $opt.name :>" name="<: $opt.name :>" class="text_field" />
+:form_after($opt)
+:}
+
+:macro form_textarea -> $opt {
+:form_before($opt)
+  <textarea id="form_<: $opt.name :>" name="<: $opt.name :>" rows="<: $opt.rows || 10 :>" cols="<: $opt.cols || 80 :>" class="text_area"></textarea>
+:form_after($opt)
+:}
+
+:macro form_select -> $opt {
+:form_before($opt)
+  <div>
+    <select id="form_<: $opt.name :>" name="<: $opt.name :>">
+:     for $opt.elements -> $element {
+:       my $e = $element.kv().0
+        <option value="<: $e.key :>"><: $e.value :></option>
+:     }
+    </select>
+  </div>
+:form_after($opt)
+:}
+
+:macro form_checkbox -> $opt {
+:form_before($opt)
+:for $opt.elements -> $element {
+: my $e = $element.kv().0;
+  <div>
+      <input type="checkbox" id="form_<: $opt.name :>_<: $~element.count :>" name="<: $opt.name :>" class="checkbox" value="<: $e.key :>" />
+    <label for="form_<: $opt.name :>_<: $~element.count :>" class="checkbox"><: $e.value :></label> 
+  </div>
+:}
+:form_after($opt)
+:}
+
+:macro form_radio -> $opt {
+:form_before($opt)
+:form_after($opt)
+:}
+
+:macro form_file -> $opt {
+:form_before($opt)
+:form_after($opt)
+:}
+
+:macro user_menu -> $opt {
+<div id="user-navigation">
+  <ul class="wat-cf">
+:   my $user_menu = $conf.user_menu || [];
+:   for $user_menu -> $u {
+      <li>
+        <a<: if($~u.count == $user_menu.count() ){ :> class="active"<: } :> href="<: $u.link :>">
+          <: $u.title :>
+        </a>
+      </li>
+:   }
+  </ul>
+</div>
+:}
+:macro global_navi -> $name {
+<div id="main-navigation">
+  <ul class="wat-cf">
+:   my $global_navi = $config.global_navi || [];
+:   for $global_navi -> $g {
+:       my $class = $~g.index ? ( $name == $g.controller ? 'active' : '' )  : ( $name == $g.controller ? 'first active' : 'first' )
+      <li<: if( $class ){ :> class="<: $class :>"<: } :>>
+        <a href="<: $g.link :>" title="<: $g.title :>">
+          <: $g.title :>
+        </a>
+      </li>
+:   }
+  </ul>
+</div>
+:}
+:macro local_navi  -> $menu_items {
+<ul class="navigation">
+  <li><a href="#block-text">Text</a></li>
+  <li><a href="#block-tables">Tables</a></li>
+  <li><a href="#block-forms">Forms</a></li>
+  <li><a href="#block-messages">Messages</a></li>
+  <li><a href="#block-forms-2">2 Columns Forms</a></li>
+  <li><a href="#block-lists">Lists</a></li>
+</ul>
+:}

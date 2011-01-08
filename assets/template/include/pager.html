@@ -1,21 +1,21 @@
-: if ($pager) {
+: if ( $pager ) {
 <div class="pagination">
-:   if(pager.current_page > 1) {
-      <a href="<:  c.uri_with( page => $pager.current_page - 1)  :>" class="prev_page">Prev</a>
+:   if( $pager.current_page > 1 ) {
+      <a href="<:  $c.uri_with( page => $pager.current_page - 1 )  :>" class="prev_page">Prev</a>
 :   }else{
       <span class="disabled prev_page">Prev</span>
 :   }
 
-:   for [$pager.first_page .. $pager.last_page] -> $num {
+:   for [ $pager.first_page .. $pager.last_page ] -> $num {
 :     if(num == pager.current_page){
-        <span class="current"><:  num  :></span>
+        <span class="current"><:  $num  :></span>
 :     }else{
-        <a href="<: c.uri_with( page => $num) :>"><: $num :></a>
+        <a href="<: $c.uri_with( page => $num ) :>"><: $num :></a>
 :     }
 :   }
 
-:   if(pager.current_page < pager.last_page){
-      <a href="<:  c.uri_with(page => pager.current_page + 1)  :>" class="next_page">Next</a>
+:   if( $pager.current_page < pager.last_page ){
+      <a href="<: $c.uri_with( page => pager.current_page + 1 )  :>" class="next_page">Next</a>
 :   }else{
       <span class="disabled next_page">Next</span>
 :   }

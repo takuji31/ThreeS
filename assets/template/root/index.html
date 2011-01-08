@@ -1,34 +1,30 @@
-:cascade layout::root;
+:cascade layout;
 :around content -> {
 <div class="block" id="block-text"> 
-          <div class="content"> 
-            <h2 class="title">スライド一覧</h2> 
-            <div class="inner"> 
-                <table class="table"> 
-                  <tr> 
-                    <th>タイトル</th> 
-                    <th>概要</th> 
-                    <th>発表者</th> 
-                    <th class="last">日時</th> 
-                  </tr> 
-:                 for $studies -> $study {
-                   <tr class="<: $~study.cycle('even','odd') :>"> 
-                      <td><: $study.title :></td>
-                      <td><: $study.memo :></td>
-                      <td><: $study.name :></td>
-                      <td class="last"><: $study.announce_at :></td> 
-                  </tr> 
-:                 }
-                </table> 
-                <div class="actions-bar wat-cf"> 
-                  <div class="actions"> 
-                      <a class="button" href="/slide/create"> 
-                        <img src="/img/admin/icons/application_edit.png" alt="Add" /> Add
-                      </a> 
-                  </div> 
-                  <: include 'include/pager.html' :>
-                </div> 
-            </div> 
+  <div class="content"> 
+    <h2 class="title">タイトル</h2> 
+    <div class="inner"> 
+        <table class="table"> 
+          <tr> 
+            <th>列</th> 
+            <th class="last">最終列</th> 
+          </tr> 
+:         for $studies -> $study {
+           <tr class="<: $~study.cycle('even','odd') :>"> 
+              <td><: $study.title :></td>
+              <td class="last"><: $study.announce_at :></td> 
+          </tr> 
+:         }
+        </table> 
+        <div class="actions-bar wat-cf"> 
+          <div class="actions"> 
+              <a class="button" href=""> 
+                <img src="/img/admin/icons/application_edit.png" alt="Add" /> Add
+              </a> 
           </div> 
+          <: include 'include/pager.html' :>
         </div> 
+    </div> 
+  </div> 
+</div> 
 :}

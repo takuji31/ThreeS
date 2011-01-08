@@ -1,10 +1,25 @@
-:cascade layout::root;
+:cascade layout;
 :around content -> {
+:block form | fillinform($req) -> {
 <div class="block" id="block-text"> 
-          <div class="content"> 
-            <h2 class="title">新しいスライドショー</h2> 
-            <div class="inner"> 
-            </div> 
-          </div> 
+  <div class="content"> 
+    <h2 class="title">新しいスライドショー</h2> 
+    <div class="inner"> 
+        <form action="" method="POST" class="form"> 
+:         form_text({name => "title", label=>"タイトル", desc => "スライドのタイトルを入力、1ページ目のタイトルにも使われます。"})
+:         form_textarea({name => "memo",  label=>"概要"    , desc => "概要"})
+:         form_checkbox({name => "a",  label=>"A"    , desc => "概要", type => 'select', elements => [{ test => "Test"},{ hoge => 'Fuga'}]})
+        <div class="group navform wat-cf"> 
+          <button class="button" type="submit"> 
+            <img src="/img/admin/icons/tick.png" alt="Save" /> Save
+          </button> 
+          <a href="/slide/" class="button"> 
+            <img src="/img/admin/icons/cross.png" alt="Cancel"/> Cancel
+          </a> 
         </div> 
+      </form> 
+    </div> 
+  </div> 
+</div> 
+:}
 :}
